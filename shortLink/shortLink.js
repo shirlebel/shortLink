@@ -13,7 +13,7 @@ module.exports = function (app, basePath) {
 
             //if already exists - return existing shortend url
             if (shortCheck) {
-                res.json(shortCheck);
+                res.json(`${basePath}/${shortCheck}`);
             }
             else {
                 //generate short url
