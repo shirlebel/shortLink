@@ -5,8 +5,6 @@ module.exports = function (app) {
     app.get('/:urlShortId', async (req, res) => {
         try {
             const { urlShortId } = req.params;
-            console.log("---urlShortId", urlShortId)
-            console.log("---shortToOriginalMap", shortToOriginalMap)
             const originalUrl = shortToOriginalMap.get(urlShortId);
 
             //if url exists - redirect to original url

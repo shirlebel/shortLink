@@ -7,7 +7,6 @@ module.exports = function (app, basePath) {
     //gets an original url and returns the short url
     app.get('/encode', (req, res) => {
         try {
-            console.log("----encode")
             const { originalUrl } = req.query;
             const shortCheck = originalToShortMap.get(originalUrl);
 
@@ -25,8 +24,6 @@ module.exports = function (app, basePath) {
 
                 res.json(`${basePath}/${shortUrl}`);
             }
-
-            // return res.status(200).send(shortUrl);
         } catch (err) {
             return res.status(500).send(res);
         }
@@ -36,11 +33,9 @@ module.exports = function (app, basePath) {
     app.get('/decode', (req, res) => {
         try {
             let { shortUrl } = req.query;
-            console.log("----shortUrl", shortUrl)
-            console.log("----shortToOriginalMap", shortToOriginalMap)
+
             //remove the basepath
             shortUrl = shortUrl.replace(`${basePath}/`, "");
-            console.log("---shortUrl afterrr", shortUrl)
             res.json(shortToOriginalMap.get(shortUrl));
         } catch (err) {
             return res.status(500).send(res);
